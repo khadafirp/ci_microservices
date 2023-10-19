@@ -16,7 +16,11 @@ class Berita extends BaseController
     {
         $model = new ModelsBerita;
         
-        return $this->respond(['data' => $this->request->getVar()], 200);
+        return $this->respond([
+            'status-code' => 200,
+            'message' => 'success',
+            'data' => $model->findAll()
+        ])->setStatusCode(200, 'OK');
         
     }
 
