@@ -26,6 +26,7 @@ class Berita extends Migration
             ],
             'created_at' => [
                 'type' => 'DATETIME',
+                'null' => true
             ],
             'updated_at' => [
                 'type' => 'DATETIME',

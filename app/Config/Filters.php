@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\AuthFilter;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -18,12 +19,11 @@ class Filters extends BaseConfig
      * @var array<string, string>
      * @phpstan-var array<string, class-string>
      */
-    public array $aliases = [
-        'csrf'          => CSRF::class,
-        'toolbar'       => DebugToolbar::class,
-        'honeypot'      => Honeypot::class,
-        'invalidchars'  => InvalidChars::class,
-        'secureheaders' => SecureHeaders::class,
+    public $aliases = [
+        'csrf'     => CSRF::class,
+        'toolbar'  => DebugToolbar::class,
+        'honeypot' => Honeypot::class,
+        'authFilter' => \App\Filters\AuthFilter::class,
     ];
 
     /**

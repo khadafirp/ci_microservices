@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\Berita;
+use App\Controllers\Pengguna;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -8,7 +9,11 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-$routes->get('/show-all-berita', [Berita::class, 'show']);
+$routes->post('/daftar', [Pengguna::class, 'daftar']);
+$routes->post('/masuk', [Pengguna::class, 'masuk']);
+$routes->post('/get-pengguna', [Pengguna::class, 'getData']);
+
+$routes->get('/show-all-berita', [Berita::class, 'show'], ['filter' => 'authFilter']);
 $routes->post('/add-berita', [Berita::class, 'create']);
 $routes->post('/edit-berita', [Berita::class, 'edit']);
 $routes->delete('/hapus-berita', [Berita::class, 'delete']);
