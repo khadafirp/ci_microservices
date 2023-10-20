@@ -4,22 +4,20 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Berita extends Model
+class Kategori extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'berita';
-    protected $primaryKey       = 'news_id';
+    protected $table            = 'kategori';
+    protected $primaryKey       = 'kategori_id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['news_id', 'kategori_id', 'news_title', 'news_description', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['kategori_title', 'created_at', 'updated_at'];
 
     // Dates
     protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
-
 }

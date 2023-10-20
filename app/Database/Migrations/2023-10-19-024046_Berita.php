@@ -15,6 +15,10 @@ class Berita extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            'kategori_id' => [
+                'type' => 'INT',
+                'constraint' => 5,
+            ],
             'news_title' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',

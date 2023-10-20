@@ -28,6 +28,7 @@ class Berita extends BaseController
         $model = new ModelsBerita;
 
         $validasi = $this->validate([
+            'kategori_id' => 'required',
             'news_title' => 'required',
             'news_description' => 'required'
         ]);
@@ -41,6 +42,7 @@ class Berita extends BaseController
 
         $post = $this->validator->getValidated();
 
+        $model->set('kategori_id', $post['kategori_id']);
         $model->set('news_title', $post['news_title']);
         $model->set('news_description', $post['news_description'], true);
         $model->insert();
@@ -56,6 +58,7 @@ class Berita extends BaseController
         $model = new ModelsBerita;
         $getData = $model->where('news_id', $this->request->getVar('news_id'))->first();
         $validasi = $this->validate([
+            'kategori_id' => 'required',
             'news_title' => 'required',
             'news_description' => 'required',
         ]);
@@ -79,6 +82,7 @@ class Berita extends BaseController
         $model->where('news_id', $getData['news_id'])->delete();
 
         $model->set('news_id', $getData['news_id']);
+        $model->set('kategori_id', $post['kategori_id']);
         $model->set('news_title', $post['news_title']);
         $model->set('news_description', $post['news_description']);
         $model->set('created_at', $getData['created_at']);
