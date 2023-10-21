@@ -24,6 +24,24 @@ class Berita extends BaseController
         
     }
 
+    public function filter(){
+        $model = new ModelsBerita;
+
+        $data = $model->where('news_id', $this->request->getVar('news_id'))->first();
+        if (empty($data)) {
+            return $this->respond([
+                'status-code' => 404,
+                'message' => 'Data tidak ditemukan'
+            ])->setStatusCode(404, 'Data is not found');
+        }
+
+        return $this->respond([
+            'status-code' => 200,
+            'message' => 'sukses',
+            'data' => $data
+        ])->setStatusCode(200, 'OK');
+    }
+
     public function create(){
         $model = new ModelsBerita;
 
