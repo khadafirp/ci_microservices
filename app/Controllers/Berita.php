@@ -65,11 +65,11 @@ class Berita extends BaseController
         $model->set('news_description', $post['news_description'], true);
         $model->insert();
 
-        return $this->respondCreated([
-            'statusCode' => 200,
+        return $this->respond([
+            'status-code' => 200,
             'message' => 'Data berhasil ditambahkan',
             'data' => $model->orderBy('news_id', 'desc')->first()
-        ]);
+        ])->setStatusCode(200, 'OK');
     }
 
     public function edit(){
@@ -131,6 +131,6 @@ class Berita extends BaseController
         return $this->respond([
             'status-code' => 200,
             'message' => 'Data berhasil dihapus',
-        ]);
+        ])->setStatusCode(200, 'OK');
     }
 }

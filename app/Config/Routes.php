@@ -16,4 +16,4 @@ $routes->get('/semua-berita', [Berita::class, 'show'], ['filter' => 'authFilter'
 $routes->post('/filter-berita', [Berita::class, 'filter'], ['filter' => 'authFilter']);
 $routes->post('/tambah-berita', [Berita::class, 'create'], ['filter' => 'authFilter']);
 $routes->post('/edit-berita', [Berita::class, 'edit'], ['filter' => 'authFilter']);
-$routes->delete('/hapus-berita', [Berita::class, 'delete'], ['filter' => 'authFilter']);
+$routes->post('/hapus-berita', [Berita::class, 'delete'], ['filter' => 'authFilter']);
