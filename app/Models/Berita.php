@@ -13,7 +13,7 @@ class Berita extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['news_id', 'kategori_id', 'news_title', 'news_description', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['news_id', 'kategori_id', 'news_title', 'news_description', 'filename', 'filesize', 'path', 'created_at', 'updated_at'];
 
     // Dates
     protected $useTimestamps = true;

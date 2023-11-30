@@ -17,3 +17,5 @@ $routes->post('/filter-berita', [Berita::class, 'filter'], ['filter' => 'authFil
 $routes->post('/tambah-berita', [Berita::class, 'create'], ['filter' => 'authFilter']);
 $routes->post('/edit-berita', [Berita::class, 'edit'], ['filter' => 'authFilter']);
 $routes->post('/hapus-berita', [Berita::class, 'delete'], ['filter' => 'authFilter']);
+
+$routes->get('/foto/(:any)', [Berita::class, 'downloadfile']);

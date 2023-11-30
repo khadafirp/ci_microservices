@@ -28,6 +28,20 @@ class Berita extends Migration
                 'type' => 'TEXT',
                 'null' => true,
             ],
+            'filename' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
+                'null' => true
+            ],
+            'filesize' => [
+                'type'       => 'INT',
+                'null' => true
+            ],
+            'path' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
+                'null' => true
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true
