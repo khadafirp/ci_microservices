@@ -2,6 +2,7 @@
 
 use App\Controllers\Berita;
 use App\Controllers\Pengguna;
+use App\Controllers\Statistik;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -19,3 +20,4 @@ $routes->post('/edit-berita', [Berita::class, 'edit'], ['filter' => 'authFilter'
 $routes->post('/hapus-berita', [Berita::class, 'delete'], ['filter' => 'authFilter']);
 
 $routes->get('/foto/(:any)', [Berita::class, 'downloadfile']);
+$routes->get('/statistik', [Statistik::class, 'showAll'], ['filter' => 'authFilter']);
