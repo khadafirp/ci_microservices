@@ -37,6 +37,9 @@ class Berita extends BaseController
             ])->setStatusCode(404, 'Data is not found');
         }
 
+        $statistikCont = new Statistik();
+        $statistikCont->create($data['news_id'], $data['kategori_id']);
+
         return $this->respond([
             'status-code' => 200,
             'message' => 'sukses',
