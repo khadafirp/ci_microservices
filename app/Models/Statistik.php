@@ -13,7 +13,7 @@ class Statistik extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['statistik_id', 'news_id', 'kategori_id', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['statistik_id', 'news_id', 'kategori_id', 'tahun', 'bulan', 'tanggal', 'created_at', 'updated_at'];
 
     // Dates
     protected $useTimestamps = true;

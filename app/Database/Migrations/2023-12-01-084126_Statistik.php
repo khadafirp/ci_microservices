@@ -26,6 +26,18 @@ class Statistik extends Migration
                     'constraint' => 5,
                     'unsigned' => true
                 ],
+                'tahun' => [
+                    'type' => 'VARCHAR',
+                    'constraint' => 20
+                ],
+                'bulan' => [
+                    'type' => 'VARCHAR',
+                    'constraint' => 20
+                ],
+                'tanggal' => [
+                    'type' => 'VARCHAR',
+                    'constraint' => 20
+                ],
                 'created_at' => [
                     'type' => 'VARCHAR',
                     'constraint' => 20
