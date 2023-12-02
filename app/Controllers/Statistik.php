@@ -19,10 +19,10 @@ class Statistik extends BaseController
         $arr4 = array();
 
         for($i = 1; $i <= 12; $i++){
-            $data1 = $model->where(['bulan' => strval($i), 'kategori_id' => 1])->countAllResults();
-            $data2 = $model->where(['bulan' => strval($i), 'kategori_id' => 2])->countAllResults();
-            $data3 = $model->where(['bulan' => strval($i), 'kategori_id' => 3])->countAllResults();
-            $data4 = $model->where(['bulan' => strval($i), 'kategori_id' => 4])->countAllResults();
+            $data1 = $model->where(['tahun' => date('Y'), 'bulan' => strval($i), 'kategori_id' => 1])->countAllResults();
+            $data2 = $model->where(['tahun' => date('Y'), 'bulan' => strval($i), 'kategori_id' => 2])->countAllResults();
+            $data3 = $model->where(['tahun' => date('Y'), 'bulan' => strval($i), 'kategori_id' => 3])->countAllResults();
+            $data4 = $model->where(['tahun' => date('Y'), 'bulan' => strval($i), 'kategori_id' => 4])->countAllResults();
             array_push($arr1, $data1);
             array_push($arr2, $data2);
             array_push($arr3, $data3);
