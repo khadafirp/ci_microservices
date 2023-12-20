@@ -105,16 +105,16 @@ class Berita extends BaseController
             'kategori_id' => 'required',
             'news_title' => 'required',
             'news_description' => 'required',
-            'path' => [
-                'label' => 'Image File',
-                'rules' => [
-                    'uploaded[path]',
-                    'is_image[path]',
-                    'mime_in[path,image/jpg,image/jpeg,image/png]',
-                    'max_size[path,100]',
-                    'max_dims[path,1024,768]',
-                ],
-            ],
+            // 'path' => [
+            //     'label' => 'Image File',
+            //     'rules' => [
+            //         'uploaded[path]',
+            //         'is_image[path]',
+            //         'mime_in[path,image/jpg,image/jpeg,image/png]',
+            //         'max_size[path,100]',
+            //         'max_dims[path,1024,768]',
+            //     ],
+            // ],
         ]);
         $uuid = Uuid::uuid();
 
@@ -135,21 +135,28 @@ class Berita extends BaseController
         $post = $this->validator->getValidated();
         $img = $this->request->getFile('path');
 
-        $filepath = WRITEPATH . 'uploads/foto';
-
-        ['uploaded_fileinfo' => new File($filepath)];
-
-        $img->move($filepath, $uuid . '.' . $img->getExtension());
-
         $model->where('news_id', $getData['news_id'])->delete();
+
+        if($img != null){
+            $filepath = WRITEPATH . 'uploads/foto';
+
+            ['uploaded_fileinfo' => new File($filepath)];
+
+            $img->move($filepath, $uuid . '.' . $img->getExtension());
+
+            $model->set('filename', $img->getName());
+            $model->set('filesize', $img->getSize());
+            $model->set('path', 'http://localhost:8080/foto/' . $img->getName());
+        } else {
+            $model->set('filename', $getData['filename']);
+            $model->set('filesize', $getData['filesize']);
+            $model->set('path', $getData['path']);
+        }
 
         $model->set('news_id', $getData['news_id']);
         $model->set('kategori_id', $post['kategori_id']);
         $model->set('news_title', $post['news_title']);
         $model->set('news_description', $post['news_description']);
-        $model->set('filename', $img->getName());
-        $model->set('filesize', $img->getSize());
-        $model->set('path', 'http://localhost:8080/foto/' . $img->getName());
         $model->set('created_at', $getData['created_at']);
         $model->set('updated_at', date("Y-m-d H:i:s"));
         $model->insert();
