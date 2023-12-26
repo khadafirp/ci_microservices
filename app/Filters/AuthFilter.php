@@ -2,12 +2,18 @@
 
 namespace App\Filters;
 
+use App\Filters\Dto\MessageBrokerDto;
+use App\Filters\MessageBroker\Consumer;
+use App\Filters\MessageBroker\Producers;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Exception;
+use Faker\Provider\Uuid;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 class AuthFilter implements FilterInterface
 {
     
@@ -28,17 +34,22 @@ class AuthFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        $key = 'Kh@dafiR0hm@nPr1h@nda';
+
         $header = $request->getHeaderLine("Authorization");
+        $key = 'Kh@dafiR0hm@nPr1h@nda';
         $token = null;
-  
-        // extract the token from the header
+
+        $producer = new Producers();
+        $consumer = new Consumer();
+
+        $producer->kirim("userid");
+        $consumer->menerima("userid", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJJc3N1ZXIgb2YgdGhlIEpXVCIsImF1ZCI6IkF1ZGllbmNlIHRoYXQgdGhlIEpXVCIsInN1YiI6IlN1YmplY3Qgb2YgdGhlIEpXVCIsImlhdCI6MTcwMzU4NDQ1MywiZXhwIjoxNzg5OTg0NDUzLCJlbWFpbCI6ImpvaG5kb2VAZ21haWwuY29tIn0.y3GcSJigA6oLKFtiqyTKI-taEoTuMgpAxDMX0xEmpNw");
+
         if(!empty($header)) {
             if (preg_match('/Bearer\s(\S+)/', $header, $matches)) {
                 $token = $matches[1];
             }
         }
-  
         // check if token is null or empty
         if(is_null($token) || empty($token)) {
             $response = service('response');
@@ -46,7 +57,7 @@ class AuthFilter implements FilterInterface
             $response->setStatusCode(401);
             return $response;
         }
-  
+
         try {
             // $decoded = JWT::decode($token, $key, array("HS256"));
             $decoded = JWT::decode($token, new Key($key, 'HS256'));

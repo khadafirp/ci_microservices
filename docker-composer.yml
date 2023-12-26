@@ -1,0 +1,14 @@
+# docker-compose.yml
+
+version: '3'
+
+services:
+  ci_microservices:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ci_microservices
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
